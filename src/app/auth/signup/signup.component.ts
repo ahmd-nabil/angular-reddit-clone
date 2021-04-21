@@ -10,9 +10,9 @@ import { SignupRequest } from './signup-request';
 })
 export class SignupComponent implements OnInit {
 
-  signupRequest !: SignupRequest;
   signupForm !: FormGroup;
-  
+  signupRequest !: SignupRequest;
+
   constructor(private signupService: SignupService) {
     this.signupRequest = {
       email: '',
@@ -33,7 +33,6 @@ export class SignupComponent implements OnInit {
     this.signupRequest.email = this.signupForm.get('email')?.value;
     this.signupRequest.username = this.signupForm.get('username')?.value;
     this.signupRequest.password = this.signupForm.get('password')?.value;
-    
-    this.signupService.signup(this.signupRequest).subscribe(data => console.log(data));
+    this.signupService.signup(this.signupRequest);
   }
 }
