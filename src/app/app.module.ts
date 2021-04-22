@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IndexComponent } from './index/index.component'
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { TokenInterceptorService } from './services/auth/token-interceptor.servi
     SignupComponent,
     LoginComponent,
     IndexComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +30,8 @@ import { TokenInterceptorService } from './services/auth/token-interceptor.servi
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FontAwesomeModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}
