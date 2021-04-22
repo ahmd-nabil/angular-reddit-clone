@@ -13,15 +13,15 @@ export class TokenInterceptorService implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const jwt = this.localStorage.retrieve('authorization');
     if(jwt) {
-      this.addJwtToHeader(req, jwt);
+      req = this.addJwtToHeader(req, jwt);
     }
     return next.handle(req);
   }
 
   addJwtToHeader(req: HttpRequest<any>, jwt: any) {
-    return req.clone(
-      {headers: req.headers.set('Authorization', jwt)}
-    )
+    return req.clone({
+      headers: req.headers.set("Authorization", jwt)
+    });
   }
 
 }
