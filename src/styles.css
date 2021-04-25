@@ -2,3 +2,11 @@
 input.ng-invalid.ng-touched {
     border: 1px solid red;
 }
+
+.reddit-body{
+    background-color:#eee ;
+}
+
+html{
+    background-color: #eee;
+}
