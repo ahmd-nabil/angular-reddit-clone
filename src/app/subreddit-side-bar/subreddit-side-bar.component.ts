@@ -11,17 +11,17 @@ import { SubredditService } from '../services/subreddit.service';
 export class SubredditSideBarComponent implements OnInit {
   
   subreddits !: Array<Subreddit>;
-  displayViewMore !: boolean;
+  displayViewAll !: boolean;  // TODO View All button is not working yet
   constructor(private subredditService: SubredditService) { }
 
   ngOnInit(): void {
     this.subredditService.getAllSubreddits().subscribe(
       data => {
-        if(data.length <= 4) {
+        if(data.length <= 3) {
           this.subreddits = data;
         } else {
-          this.subreddits = data.splice(0, 4);
-          this.displayViewMore = true;
+          this.subreddits = data.splice(0, 3);
+          this.displayViewAll = true;
         }
          this.subreddits.map(subreddit => subreddit.name = `r/${subreddit.name}`);
       });

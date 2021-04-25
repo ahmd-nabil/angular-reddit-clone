@@ -7,10 +7,16 @@ import { Subreddit } from '../model/subreddit';
   providedIn: 'root'
 })
 export class SubredditService {
-
+  subredditBaseUrl = 'http://localhost:8080/api/subreddits';
   constructor(private httpClient: HttpClient) { }
 
   getAllSubreddits(): Observable<Array<Subreddit>> {
-    return this.httpClient.get<Array<Subreddit>>('http://localhost:8080/api/subreddits');
+    return this.httpClient.get<Array<Subreddit>>(this.subredditBaseUrl);
   }
+
+  createSubreddit(subreddit: Subreddit) {
+    console.log("in create service");
+    return this.httpClient.post<String>(this.subredditBaseUrl, subreddit);
+  }
+
 }
