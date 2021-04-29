@@ -15,7 +15,7 @@ export class SubredditService {
   }
 
   createSubreddit(subreddit: Subreddit) {
-    console.log("in create service");
+    subreddit.name = `r/${subreddit.name}`;
     return this.httpClient.post<String>(this.subredditBaseUrl, subreddit);
   }
 

@@ -23,7 +23,6 @@ export class SubredditSideBarComponent implements OnInit {
           this.subreddits = data.splice(0, 3);
           this.displayViewAll = true;
         }
-         this.subreddits.map(subreddit => subreddit.name = `r/${subreddit.name}`);
       });
   }
 

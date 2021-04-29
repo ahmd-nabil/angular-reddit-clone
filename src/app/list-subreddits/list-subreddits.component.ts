@@ -16,7 +16,6 @@ export class ListSubredditsComponent implements OnInit {
   ngOnInit(): void {
     this.subredditService.getAllSubreddits().subscribe(data => {
       this.subreddits = data;
-      this.subreddits.map(subreddit => subreddit.name = `r/${subreddit.name}`);
     }, error => {
       throwError(error);
     })
