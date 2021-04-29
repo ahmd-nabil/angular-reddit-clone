@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+      <hr />
+        <div class="col-md-9">
+            <div class="row post">
+            <div class="col-md-1">
+                <app-votes [post]="post"></app-votes>
+            </div>
+            <div class="col-md-11">
+                <span>
+                <span class="subreddit-text"><a class="post-url" routerLink="view-by-subreddit-name/{{post.subredditName}}">{{post.subredditName}}</a></span>
+                <span> . Posted 
+                    <span> {{post.timeAgo}} </span>
+                    by
+                    <a *ngIf="post.username === null" class="username" href="">Anonymous</a>
+                    <a *ngIf="post.username != null" class="username" href="">{{post.username}}</a>
+                </span>                        
+                </span>
+                <hr />
+                <a routerLink="/view-post/{{post.id}}" class="post-title">{{post.title}}</a>
+                <div>
+                <p class="post-text" [innerHtml]="post.description"></p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <app-side-bar></app-side-bar>
+            <app-subreddit-side-bar></app-subreddit-side-bar>
+        </div>
+    </div>
+</div>

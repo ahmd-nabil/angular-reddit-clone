@@ -4,13 +4,13 @@
     <!-- Section to Display Post Information-->
     <div class="col-md-11">
       <span class="subreddit-info">
-        <span class="subreddit-text"><a class="posturl" routerLink="">{{post.subredditName}}</a></span>
+        <span class="subreddit-text"><a class="posturl">{{post.subredditName}}</a></span>
         <span> . Posted by <a class="username" routerLink="/user/{{post.username}}">{{post.username}}</a></span>
         <span> . {{post.timeAgo}}</span>
       </span>
       <hr />
       <div class="post-title">
-        <a class="posttitle" href="{{post.url}}">{{post.title}}</a>
+        <a class="posttitle" routerLink="/view-post/{{post.id}}">{{post.title}}</a>
       </div>
       <div>
         <p class="post-text" [innerHtml]="post.description"></p>
@@ -21,7 +21,7 @@
           <fa-icon [icon]="faComments"></fa-icon>
           Comments({{post.commentsCount}})
         </a>
-        <button class="login" (click)="goToPost(post.id)">
+        <button class="login" type="button" routerLink="/view-post/{{post.id}}">
           Read Post
         </button>
       </span>
