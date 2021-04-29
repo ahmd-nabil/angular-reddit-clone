@@ -6,15 +6,18 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { CreateSubredditComponent } from './create-subreddit/create-subreddit.component';
 import { IndexComponent } from './index/index.component';
 import { ListSubredditsComponent } from './list-subreddits/list-subreddits.component';
+import { ViewPostComponent } from './view-post/view-post.component';
 
 const routes: Routes = [
-  {path:'subreddits', component: ListSubredditsComponent},
+  {path: '', component: IndexComponent},
+  {path: 'index', component: IndexComponent},
+  {path: 'view-subreddit/:subredditId', component: IndexComponent},
+  {path:'view-post/:id', component: ViewPostComponent},
   {path:'create-post', component: CreatePostComponent},
+  {path:'subreddits', component: ListSubredditsComponent},
   {path:'create-subreddit', component: CreateSubredditComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
-  {path: '', component: IndexComponent},
-  {path: 'index', component: IndexComponent},
   {path: '**', component: IndexComponent}
 ];
 

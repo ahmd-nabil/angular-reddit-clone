@@ -18,4 +18,16 @@ export class PostService {
   createPost(post: CreatePostRequest): Observable<String> {
     return this.httpClient.post<String>('http://localhost:8080/api/posts', post);
   }
+
+  getPost(id: number): Observable<any> {
+    return this.httpClient.get<Post>('http://localhost:8080/api/posts/'+id);
+  }
+
+  getPostsBySubredditId(id: number) : Observable<Array<Post>> {
+    return this.httpClient.get<Array<Post>>('http://localhost:8080/api/posts/subreddit/'+id);
+  }
+
+  getPostsBySubredditName(name: string) : Observable<Array<Post>> {
+    return this.httpClient.get<Array<Post>>('http://localhost:8080/api/posts/subreddit/'+name);
+  }
 }
