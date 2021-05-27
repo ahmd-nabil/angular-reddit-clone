@@ -20,7 +20,28 @@
                 <a routerLink="/view-post/{{post.id}}" class="post-title">{{post.title}}</a>
                 <div>
                 <p class="post-text" [innerHtml]="post.description"></p>
+                <!-- COMMENTS SECTION -->
                 </div>
+                <div class="post-comment">
+                    <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+                      <div class="form-group">
+                        <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
+                      </div>
+                      <button type="submit" class="login float-right">Comment</button>
+                    </form>
+                  </div>
+                  <div style="margin-top: 60px;" *ngFor="let comment of comments">
+                    <div class="comment">
+                      <div class="username">
+                        <a routerLink="/user/comment.username">{{comment.username}}</a>
+                      </div>
+                      <div>
+                        <p>{{comment.timeAgo}}</p>
+                      </div>
+                      <b>{{comment.text}}</b>
+                    </div>
+                    <hr />
+            </div>
             </div>
             </div>
         </div>
