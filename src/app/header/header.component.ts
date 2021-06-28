@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LoginService } from '../services/auth/login.service';
 
@@ -11,14 +11,18 @@ import { LoginService } from '../services/auth/login.service';
 export class HeaderComponent implements OnInit {
 
   faUser = faUser;
-  isLoggedIn !: boolean;
-  username !: string;
-  
+
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.loginService.loggedIn.subscribe((loggedIn: boolean) => this.isLoggedIn = loggedIn);
-    this.username = this.loginService.getUserName();
+  }
+
+  isLoggedIn(): boolean {
+    return this.loginService.isLoggedIn();
+  }
+
+  getUserName(): string {
+    return this.loginService.getUserName();
   }
 
   logout(): void {

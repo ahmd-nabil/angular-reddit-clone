@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Jwt } from 'src/app/auth/login/jwt';
 import { LoginRequest } from 'src/app/auth/login/login-request';
 import { map } from 'rxjs/operators';
@@ -11,16 +11,19 @@ import { map } from 'rxjs/operators';
 })
 
 export class LoginService {
-  @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
+  loggedIn !: boolean;
+  loggedInChange: Subject<boolean> = new Subject<boolean>();
   
   constructor(private httpClient: HttpClient,
-              private localStorage: LocalStorageService) { }
+              private localStorage: LocalStorageService) { 
+                this.loggedInChange.subscribe(val => this.loggedIn = val);
+              }
 
   login(loginRequest: LoginRequest): Observable<boolean> {
     return this.httpClient.post<Jwt>('http://localhost:8080/api/auth/login', loginRequest).pipe( map ( jwt => {
       this.localStorage.store('username', jwt.username);  
       this.localStorage.store('Authorization', jwt.token);
-      this.loggedIn.emit(true);
+      this.loggedInChange.next(true);
       return true;
     }));
   }
@@ -40,7 +43,7 @@ export class LoginService {
   logout() {
     this.localStorage.clear('Authorization');
     this.localStorage.clear('username');
-    this.loggedIn.emit(false);
+    this.loggedInChange.next(false);
     window.location.reload();
   }
 }
